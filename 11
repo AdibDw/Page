@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقارك - موقع بيع وتأجير العقارات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* التصميم للرأس */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .auth-buttons button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .auth-buttons button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            object-fit: cover;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            left: 0;
+            top: 50px;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: var(--secondary-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* قسم الهيرو */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/2c3e50/ecf0f1') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .search-box input, .search-box select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 23%;
+        }
+        
+        .search-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        
+        /* قسم الخصائص */
+        .properties {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .property-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .property-favorite {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .property-favorite i {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .property-favorite.active i {
+            color: var(--secondary-color);
+        }
+        
+        .property-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .property-card:hover .property-image img {
+            transform: scale(1.1);
+        }
+        
+        .property-details {
+            padding: 20px;
+        }
+        
+        .property-price {
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .property-address {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        /* لوحة التحكم */
+        .dashboard {
+            padding: 60px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        
+        .dashboard-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            background-color: #eee;
+            transition: background-color 0.3s;
+        }
+        
+        .dashboard-tab.active {
+            background-color: white;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .dashboard-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .add-property-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            grid-column: span 2;
+        }
+        
+        /* قسم المدونة */
+        .blog {
+            padding: 60px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-image {
+            height: 200px;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-title {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .blog-excerpt {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .blog-read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* قسم الخدمات */
+        .services {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        /* التذييل */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* responsive design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .auth-buttons {
+                margin-top: 15px;
+            }
+            
+            .search-box input, .search-box select {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .add-property-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-submit {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الرأس -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo">
+                    <i class="fas fa-home"></i>
+                    عقارك
+                </a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">العقارات</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-menu">
+                    <div class="dropdown">
+                        <img src="https://placehold.co/40x40/3498db/ffffff" alt="صورة المستخدم">
+                        <div class="dropdown-content">
+                            <a href="#"><i class="fas fa-user"></i> الملف الشخصي</a>
+                            <a href="#"><i class="fas fa-heart"></i> المفضلة</a>
+                            <a href="#"><i class="fas fa-home"></i> عقاراتي</a>
+                            <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
+                            <a href="#"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                        </div>
+                    </div>
+                    <button onclick="showAddPropertyForm()"><i class="fas fa-plus"></i> إضافة عقار</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم الهيرو -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ابحث عن منزل أحلامك</h1>
+                <p>أكبر موقع لعرض العقارات للبيع والايجار في الوطن العربي</p>
+                
+                <div class="search-box">
+                    <select>
+                        <option>نوع العقار</option>
+                        <option>شقة</option>
+                        <option>فيلا</option>
+                        <option>منزل</option>
+                        <option>أرض</option>
+                    </select>
+                    
+                    <select>
+                        <option>المدينة</option>
+                        <option>الرياض</option>
+                        <option>جدة</option>
+                        <option>القاهرة</option>
+                        <option>دبي</option>
+                    </select>
+                    
+                    <select>
+                        <option>السعر</option>
+                        <option>حتى 500,000</option>
+                        <option>500,000 - 1,000,000</option>
+                        <option>1,000,000 - 2,000,000</option>
+                        <option>أكثر من 2,000,000</option>
+                    </select>
+                    
+                    <select>
+                        <option>الغرف</option>
+                        <option>1 غرفة</option>
+                        <option>2 غرف</option>
+                        <option>3 غرف</option>
+                        <option>4 غرف أو أكثر</option>
+                    </select>
+                    
+                    <button class="search-button">ابحث عن عقار</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم العقارات المميزة -->
+    <section class="properties">
+        <div class="container">
+            <h2 class="section-title">عقارات مميزة</h2>
+            
+            <div class="properties-grid">
+                <!-- عقار 1 -->
+                <div class="property-card">
+                    <div class="property-badge">مميز</div>
+                    <div class="property-favorite active">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="property-image">
+                        <img src="https://placehold.co/600x400/3498db/ffffff" alt="فيلا فاخرة">
+                    </div>
+                    <div class="property-details">
+                        <div class="property-price">2,500,000 ريال</div>
+                        <h3>فيلا فاخرة للبيع</h3>
+                        <p class="property-address">حي الرحاب، الرياض، السعودية</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 4 غرف</span>
+                            <span><i class="fas fa-bath"></i> 3 حمامات</span>
+                            <span><i class="fas fa-ruler-combined"></i> 320 م²</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- عقار 2 -->
+                <div class="property-card">
+                    <div class="property-badge">للإيجار</div>
+                    <div class="property-favorite">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="property-image">
+                        <img src="https://placehold.co/600x400/e74c3c/ffffff" alt="شقة جديدة">
+                    </div>
+                    <div class="property-details">
+                        <div class="property-price">5,000 درهم/شهر</div>
+                        <h3>شقة جديدة للإيجار</h3>
+                        <p class="property-address">دبي مارينا، دبي، الإمارات</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 2 غرف</span>
+                            <span><i class="fas fa-bath"></i> 2 حمامات</span>
+                            <span><i class="fas fa-ruler-combined"></i> 110 م²</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- عقار 3 -->
+                <div 
